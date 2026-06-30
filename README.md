@@ -1,10 +1,10 @@
-# 📬 Email Agent — AI-Driven Email Digest
+# Email Agent — AI-Driven Email Digest
 
 An AI-powered email automation agent that fetches your unread emails twice a day, summarises and categorises each one using an LLM, and delivers a consolidated digest straight to your phone via Telegram or Discord.
 
 ---
 
-## ✨ Features
+## Features
 
 | Feature | Details |
 |---|---|
@@ -18,7 +18,7 @@ An AI-powered email automation agent that fetches your unread emails twice a day
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Email Agent/
@@ -27,7 +27,7 @@ Email Agent/
 ├── email_fetcher.py    # IMAP email fetching + marking
 ├── llm_processor.py    # AI summarization & categorization
 ├── notifier.py         # Telegram / Discord digest sender
-├── .env                # ← YOUR secrets (never commit this)
+├── .env                # Your secrets (never commit this)
 ├── .env.example        # Template to copy from
 ├── requirements.txt    # Python dependencies
 ├── agent.log           # Auto-created log file at runtime
@@ -36,7 +36,7 @@ Email Agent/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1 — Clone / download and set up a virtual environment
 
@@ -82,22 +82,22 @@ The agent will wait silently until 8:00 AM or 8:00 PM and then execute.
 
 ---
 
-## ⚙️ Configuration Guide
+## Configuration Guide
 
-All settings live in your `.env` file. Here is what each section requires:
+All settings live in your `.env` file. Here is what each section requires.
 
 ---
 
-### 📧 Email Access (Gmail — Recommended)
+### Email Access (Gmail — Recommended)
 
 Gmail blocks plain passwords. You need an **App Password**.
 
 1. Enable 2-Step Verification on your Google Account:  
-   → https://myaccount.google.com/security
+   https://myaccount.google.com/security
 
 2. Create an App Password:  
-   → https://myaccount.google.com/apppasswords  
-   Select **Mail** + **Windows Computer** (or any device). Copy the 16-char password.
+   https://myaccount.google.com/apppasswords  
+   Select **Mail** + **Windows Computer** (or any device). Copy the 16-character password.
 
 3. Set in `.env`:
 ```env
@@ -111,7 +111,7 @@ EMAIL_APP_PASSWORD=abcd efgh ijkl mnop
 
 ---
 
-### 📧 Email Access (Generic IMAP)
+### Email Access (Generic IMAP)
 
 ```env
 EMAIL_PROVIDER=imap
@@ -123,9 +123,9 @@ IMAP_PORT=993
 
 ---
 
-### 🤖 LLM — Option A: Ollama (Local, 100% Free, Recommended)
+### LLM — Option A: Ollama (Local, 100% Free, Recommended)
 
-Runs entirely on your own PC. No internet, no account, no limits.
+Runs entirely on your own machine. No internet connection, no account, no usage limits.
 
 1. Install Ollama: https://ollama.com
 2. Pull a model: `ollama pull llama3`
@@ -138,11 +138,11 @@ OLLAMA_MODEL=llama3
 
 ---
 
-### 🤖 LLM — Option B: Google Gemini (Free Cloud API)
+### LLM — Option B: Google Gemini (Free Cloud API)
 
-Free tier: 15 RPM · 1 500 requests/day · 1 M tokens/day. No billing required.
+Free tier: 15 RPM · 1,500 requests/day · 1M tokens/day. No billing required.
 
-1. Get a free key at: https://aistudio.google.com/apikey
+1. Get a free API key at: https://aistudio.google.com/apikey
 2. Set in `.env`:
 ```env
 LLM_PROVIDER=gemini
@@ -152,11 +152,11 @@ GEMINI_MODEL=gemini-2.0-flash
 
 ---
 
-### 🤖 LLM — Option C: Groq Cloud (Free Cloud API)
+### LLM — Option C: Groq Cloud (Free Cloud API)
 
-Free tier: 14 400 requests/day on Llama-3. No billing required.
+Free tier: 14,400 requests/day on Llama-3. No billing required.
 
-1. Get a free key at: https://console.groq.com
+1. Get a free API key at: https://console.groq.com
 2. Set in `.env`:
 ```env
 LLM_PROVIDER=groq
@@ -166,12 +166,12 @@ GROQ_MODEL=llama3-8b-8192
 
 ---
 
-### 📱 Notifications — Telegram (Recommended)
+### Notifications — Telegram (Recommended)
 
 **Step 1 — Create a bot:**
 1. Open Telegram and search for `@BotFather`
 2. Send `/newbot` and follow the prompts
-3. Copy the **Bot Token** (looks like `123456789:AABBCCDDEEFFaabbccddeeff`)
+3. Copy the **Bot Token** (format: `123456789:AABBCCDDEEFFaabbccddeeff`)
 
 **Step 2 — Get your Chat ID:**
 1. Send any message to your new bot
@@ -187,7 +187,7 @@ TELEGRAM_CHAT_ID=987654321
 
 ---
 
-### 📱 Notifications — Discord
+### Notifications — Discord
 
 1. In your Discord server: **Server Settings → Integrations → Webhooks → New Webhook**
 2. Copy the webhook URL
@@ -199,7 +199,7 @@ DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
 
 ---
 
-### ⏰ Schedule & Timezone
+### Schedule & Timezone
 
 ```env
 SCHEDULE_TIMES=08:00,20:00
@@ -211,32 +211,32 @@ Find your timezone name at: https://en.wikipedia.org/wiki/List_of_tz_database_ti
 
 ---
 
-## 📲 Sample Digest
+## Sample Digest
 
 ```
-🌅 Morning Email Digest (08:00 AM)
+Morning Email Digest (08:00 AM)
 ────────────────────────────────
 
-📥 4 new email(s) processed
+4 new email(s) processed
 
-🎓 Campus Placements & Career
-  • Google Recruiting | Interview Update
-    → Technical round scheduled for Friday at 3 PM – action required.
+Campus Placements & Career
+  - Google Recruiting | Interview Update
+    Technical round scheduled for Friday at 3 PM – action required.
 
-📰 Newsletters & Tech Digests
-  • TLDR Tech | AI Weekly #142
-    → Roundup of new open-source LLM releases and framework updates.
+Newsletters & Tech Digests
+  - TLDR Tech | AI Weekly #142
+    Roundup of new open-source LLM releases and framework updates.
 
-🏷️ Advertisements & Marketing
-  • 2 promotional emails omitted.
+Advertisements & Marketing
+  - 2 promotional emails omitted.
 
 ────────────────────────────────
-_Sent by Email Agent 🤖_
+Sent by Email Agent
 ```
 
 ---
 
-## 🔄 Running as a Background Service
+## Running as a Background Service
 
 ### Windows — Task Scheduler
 
@@ -245,7 +245,7 @@ _Sent by Email Agent 🤖_
 3. Action: `Start a program`
    - Program: `C:\path\to\.venv\Scripts\python.exe`
    - Arguments: `agent.py`
-   - Start in: `C:\Users\srish\OneDrive\Desktop\Email Agent`
+   - Start in: `C:\path\to\Email Agent`
 
 ### macOS / Linux — systemd service
 
@@ -283,14 +283,14 @@ while true; do python agent.py; sleep 5; done
 
 ---
 
-## 🛡️ Security Notes
+## Security Notes
 
 | Concern | Mitigation |
 |---|---|
 | Credential exposure | All secrets in `.env`, never hardcoded |
 | `.env` in version control | Add `.env` to `.gitignore` |
 | Email password safety | Use App Passwords, not your main account password |
-| API key exposure | Rotate keys if repo is accidentally made public |
+| API key exposure | Rotate keys if the repository is accidentally made public |
 | Network failures | 3-retry exponential back-off on all external calls |
 
 Add to `.gitignore`:
@@ -303,23 +303,23 @@ __pycache__/
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 | Problem | Fix |
 |---|---|
 | `EnvironmentError: EMAIL_ADDRESS not set` | Copy `.env.example` to `.env` and fill it in |
-| Gmail IMAP login failed | Enable IMAP in Gmail settings; use App Password not main password |
+| Gmail IMAP login failed | Enable IMAP in Gmail settings; use an App Password, not your main password |
 | `No module named 'openai'` | Run `pip install -r requirements.txt` |
 | Telegram: `401 Unauthorized` | Double-check `TELEGRAM_BOT_TOKEN` |
-| Telegram: `400 Bad Request chat not found` | Make sure you have messaged the bot first |
-| No emails fetched | Check that `LOOKBACK_HOURS` covers the right window; emails must be *unread* |
+| Telegram: `400 Bad Request chat not found` | Ensure you have sent a message to the bot first |
+| No emails fetched | Check that `LOOKBACK_HOURS` covers the right window; emails must be unread |
 | LLM returns non-JSON | Temporary model glitch — retried automatically up to 3 times |
 
 Check `agent.log` for detailed timestamped output for every run.
 
 ---
 
-## 📦 Dependencies
+## Dependencies
 
 | Package | Purpose |
 |---|---|
