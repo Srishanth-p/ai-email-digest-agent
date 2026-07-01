@@ -1,5 +1,5 @@
 @echo off
-cd /d "C:\Users\srish\OneDrive\Desktop\Email Agent"
+cd /d "%~dp0"
 ".venv\Scripts\python.exe" agent.py --run-now
 if %ERRORLEVEL% neq 0 (
     echo.
